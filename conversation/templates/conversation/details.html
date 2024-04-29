@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block title %} Conversation{% endblock title %}
+
+
+<div class="">
+    {% block content %}
+
+       <h1 class="flex items-center justify-center mt-20 text-teal-500 font-semibold">Conversation Details</h1>
+
+       <div class="space-y-6">
+          {% for message in conversation.messages.all %}
+             
+                <div class="flex p-6 {% if message.created_by == request.user %}bg-blue-100{% else %} bg-gray-100{% endif %} rounded-xl">
+                    <div class="">
+                        <p class="mb-4"><strong>{{ message.created_by.username }}</strong> @ {{ message.created_at }}</p>
+
+                        <p class="">{{ message.content }}</p>
+                    </div> 
+                </div>
+              
+                <form action="." method="post" class="mt-6">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+
+                    <button class="py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white">Send</button>
+                </form>
+          {% endfor %}
+       </div>
+    {% endblock content %} 
+</div>
+
