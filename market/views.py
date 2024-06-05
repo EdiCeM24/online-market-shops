@@ -4,7 +4,7 @@ from item .models import Category, Item
 # this below is importing from forms.py.
 from .forms import SignupForm, LoginForm # type: ignore
 
-# Create your views here.
+
 
 def home(request):
     items = Item.objects.filter(is_sold=False)[0:6]

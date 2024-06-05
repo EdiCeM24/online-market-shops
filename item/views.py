@@ -5,6 +5,7 @@ from .forms import NewItemForm, EditItemForm
 from django.db.models import Q     # for query or search.
 
 
+@login_required
 def items(request):
     query = request.GET.get('query', '')
     category_id = request.GET.get('category_id', 0)
